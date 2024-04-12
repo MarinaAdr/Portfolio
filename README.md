@@ -1,2 +1,2 @@
 # Portfolio
-My portfolio in react js
+My portfolio in React, Next.js, TypeScript, and Tailwind CSS
