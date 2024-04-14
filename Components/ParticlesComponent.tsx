@@ -32,11 +32,11 @@ const ParticlesComponent = (props: { id: string | undefined; }) => {
 
   const options = useMemo(
     () => ({
-      background: {
-        color: {
-          value: "white",
-        },
-      },
+      // background: {
+      //   color: {
+      //     value: "#1E2F97",
+      //   },
+      // },
       fpsLimit: 120,
       interactivity: {
         events: {
@@ -51,7 +51,7 @@ const ParticlesComponent = (props: { id: string | undefined; }) => {
         },
         modes: {
           push: {
-            distance: 10,
+            distance: 20,
             duration: 150,
           },
           grab: {
@@ -61,10 +61,10 @@ const ParticlesComponent = (props: { id: string | undefined; }) => {
       },
       particles: {
         color: {
-          value: "#FFFFFF",
+          value: "#000",
         },
         links: {
-          color: "#FFFFFF",
+          color: "#000",
           distance: 150,
           enable: true,
           opacity: 0.3,
@@ -77,7 +77,7 @@ const ParticlesComponent = (props: { id: string | undefined; }) => {
             default: "bounce",
           },
           random: true,
-          speed: 1,
+          speed: 10,
           straight: false,
         },
         number: {
