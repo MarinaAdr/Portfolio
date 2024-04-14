@@ -20,7 +20,7 @@ const Hero = () => {
             <div className='relative w-[80%] z-10 mx-auto grid lg:grid-cols-2 gap-[3rem] h-[100%] items-center'>
                 <div>
                     <h1 className='text-[35px] md:text-[50px] text-black font-bold'>
-                        SALUT, Je suis<span className='text-pink-500'> Claudia!</span>
+                        SALUT, Je suis<span className='text-pink-600'> Claudia!</span>
                     </h1>
                    
                     <TextEffects />

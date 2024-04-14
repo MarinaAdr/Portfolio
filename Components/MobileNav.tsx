@@ -17,7 +17,7 @@ const MobileNav: React.FC<Props> = ({ nav, closeNav }) => {
                 <div className='nav-link-mobile'>PROJECTS</div>
                 <div className='nav-link-mobile'>CONTACT</div>
             </div>
-            <div onClick={closeNav} className='absolute z-[10000000] cursor-pointer top-[2rem] right-[2rem] w-[2rem] h-[2rem] text-pink-500'>
+            <div onClick={closeNav} className='absolute z-[10000000] cursor-pointer top-[2rem] right-[2rem] w-[2rem] h-[2rem] text-pink-600'>
                 <XMarkIcon />
             </div>
         </div>

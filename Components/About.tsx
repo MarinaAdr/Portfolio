@@ -28,7 +28,7 @@ const About = () => {
             </div>
             <div className='lg:w-[500px] mx-auto md:mx-0 mt-[2rem] lg:mt-0 lg:h-[500px] h-[300px] relative'>
                 <Image src="/images/profil.jpg" alt='user' layout='fill' objectFit='contain' className='relative z-[11] w-[100%] object-contain '/>
-            <div className='absolute w-[100%] h-[80%] bg-pink-500 top-[2.7rem] right-[-2rem]'></div>
+            <div className='absolute w-[100%] h-[80%] bg-pink-600 top-[2.7rem] right-[-2rem]'></div>
             </div>
         </div>
     </div>
