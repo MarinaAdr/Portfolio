@@ -13,7 +13,7 @@ const MobileNav: React.FC<Props> = ({ nav, closeNav }) => {
             <div className='w-[100vw] h-[100vh] flex flex-col items-center justify-center'>
                 <div className='nav-link-mobile'>HOME</div>
                 <div className='nav-link-mobile'>SERVICES</div>
-                <div className='nav-link-mobile'>ABOUT</div>
+                <div className='nav-link-mobile'>A PROPOS</div>
                 <div className='nav-link-mobile'>PROJECTS</div>
                 <div className='nav-link-mobile'>CONTACT</div>
             </div>
