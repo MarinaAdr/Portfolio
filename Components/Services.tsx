@@ -1,4 +1,4 @@
-import { CodeBracketSquareIcon } from '@heroicons/react/24/solid'
+import { CodeBracketSquareIcon, CommandLineIcon, RocketLaunchIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 
 const Services = () => {
@@ -12,21 +12,25 @@ const Services = () => {
                 <CodeBracketSquareIcon className='w-[6rem] mx-auto text-[#fff]'/>
                 <h1 className='text-[20px] md:text-[25px] mt-[1.5rem] mb-[1.5rem]'>Frontend</h1>
                 <p className='text-[15px] text-white font-normal'>
-                    Developpement d'un site e-commerce en Reactjs
+                Développement de sites web dynamiques et réactifs, mettant en valeur une expérience utilisateur intuitive et fluide.
+                Tests rigoureux sur une variété de navigateurs et d'appareils pour garantir une compatibilité maximale et une expérience homogène
                 </p>
             </div>
             <div className='bg-yellow-600 hover:scale-110 transform transition-all duration-300 hover:rotate-6 uppercase font-semibold text-center p-[2rem]'>
-                <CodeBracketSquareIcon className='w-[6rem] mx-auto text-[#fff]'/>
-                <h1 className='text-[20px] md:text-[25px] mt-[1.5rem] mb-[1.5rem]'>Frontend</h1>
+                <RocketLaunchIcon className='w-[6rem] mx-auto text-[#fff]'/>
+                <h1 className='text-[20px] md:text-[25px] mt-[1.5rem] mb-[1.5rem]'>Backend</h1>
                 <p className='text-[15px] text-white font-normal'>
-                    Developpement d'un site e-commerce en Reactjs
+                Développement de solutions backend robustes et évolutives pour répondre aux besoins fonctionnels complexes de vos applications web.
+                Formation et documentation pour permettre aux équipes internes ou aux clients de comprendre et de gérer efficacement l'infrastructure et le code backend
                 </p>
             </div>
             <div className='bg-cyan-700 hover:scale-110 transform transition-all duration-300 hover:rotate-6 uppercase font-semibold text-center p-[2rem]'>
-                <CodeBracketSquareIcon className='w-[6rem] mx-auto text-[#fff]'/>
-                <h1 className='text-[20px] md:text-[25px] mt-[1.5rem] mb-[1.5rem]'>Frontend</h1>
+                <CommandLineIcon className='w-[6rem] mx-auto text-[#fff]'/>
+                <h1 className='text-[20px] md:text-[25px] mt-[1.5rem] mb-[1.5rem]'>Tests</h1>
                 <p className='text-[15px] text-white font-normal'>
-                    Developpement d'un site e-commerce en Reactjs
+                L'automatisation des tests est un pilier essentiel du développement logiciel moderne, 
+                garantissant la qualité, la fiabilité et la robustesse des applications. 
+                Dans ce contexte, CodeceptJS et Selenium émergent comme des outils puissants pour la création et l'exécution de tests automatisés.
                 </p>
             </div>
 
