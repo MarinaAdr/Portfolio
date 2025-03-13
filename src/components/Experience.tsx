@@ -18,7 +18,7 @@ const experiences = [
   {
     company: "SOA",
     position: "Testeur Logiciel et TMA",
-    period: "2022 - 2024",
+    period: "Dec 2022 - Fevrier 2024",
     description: "Tests manuels et automatisés avec CodeceptJS",
     tasks: [
       "Création et exécution de plans de test",
@@ -104,6 +104,53 @@ const Experience = () => {
     { x: "45%", y: "10%", size: 9, delay: 0.5 },
   ];
 
+  // Nouvelles animations pour les cartes
+  const cardHoverVariants = {
+    hover: {
+      scale: 1.02,
+      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)",
+      borderColor: "rgb(45, 212, 191)", // teal-400
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 15
+      }
+    }
+  };
+
+  const cardFloatVariants = (index) => ({
+    initial: { y: 0 },
+    float: {
+      y: [0, -10, 0],
+      transition: {
+        delay: index * 0.2,
+        duration: 4,
+        repeat: Infinity,
+        repeatType: "mirror",
+        ease: "easeInOut"
+      }
+    }
+  });
+
+  const cardGlowVariants = {
+    initial: { 
+      boxShadow: "0 0 0 rgba(45, 212, 191, 0)" 
+    },
+    glow: {
+      boxShadow: [
+        "0 0 0 rgba(45, 212, 191, 0)",
+        "0 0 15px rgba(45, 212, 191, 0.3)",
+        "0 0 0 rgba(45, 212, 191, 0)"
+      ],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        repeatType: "loop",
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
     <section id="experience" className="py-20 bg-[#0a1122] relative overflow-hidden">
       {/* Decorative elements */}
@@ -168,35 +215,100 @@ const Experience = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
                 className="relative"
               >
                 {/* Timeline dot */}
                 <motion.div 
                   className="absolute left-1/2 -ml-3 h-6 w-6 rounded-full bg-teal-400 shadow-lg shadow-teal-400/50 border-2 border-white z-10"
                   initial={{ scale: 0 }}
-                  animate={inView ? { scale: 1 } : { scale: 0 }}
-                  transition={{ delay: 0.2 + index * 0.2, duration: 0.5 }}
+                  animate={inView ? { 
+                    scale: 1,
+                    transition: { delay: 0.2 + index * 0.2, duration: 0.5 }
+                  } : { scale: 0 }}
+                  whileHover={{ 
+                    scale: 1.3,
+                    boxShadow: "0 0 20px rgba(45, 212, 191, 0.8)" 
+                  }}
                 />
 
-                {/* Card */}
+                {/* Card with multiple animations */}
                 <motion.div
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseLeave={() => setActiveIndex(null)}
-                  className="bg-[#111a2e] rounded-xl shadow-xl p-8 border border-[#1e2a47] hover:border-teal-400 transition-all duration-300"
+                  className="bg-[#111a2e] rounded-xl shadow-xl p-8 border border-[#1e2a47] transition-all duration-300"
+                  variants={cardFloatVariants(index)}
+                  initial="initial"
+                  animate={inView ? "float" : "initial"}
+                  whileHover="hover"
+                  variants={cardHoverVariants}
+                  // Ajouter un effet de rotation subtil
+                  animate={inView ? {
+                    rotateX: [0, 1, 0, -1, 0],
+                    rotateY: [0, -1, 0, 1, 0],
+                    transition: {
+                      duration: 8,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      delay: index * 0.5
+                    }
+                  } : {}}
                 >
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                  {/* Effet de bordure animée */}
+                  <motion.div
+                    className="absolute inset-0 rounded-xl border-2 border-transparent z-0"
+                    animate={inView ? {
+                      borderColor: ["rgba(45, 212, 191, 0)", "rgba(45, 212, 191, 0.5)", "rgba(45, 212, 191, 0)"],
+                      boxShadow: [
+                        "0 0 0px rgba(45, 212, 191, 0)",
+                        "0 0 15px rgba(45, 212, 191, 0.3)",
+                        "0 0 0px rgba(45, 212, 191, 0)"
+                      ],
+                      transition: {
+                        duration: 4,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        delay: index * 0.7
+                      }
+                    } : {}}
+                  />
+
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 relative z-10">
                     {/* Left side */}
                     <div className="md:w-1/3">
-                      <h3 className="text-2xl font-bold text-teal-400 mb-2">
+                      <motion.h3 
+                        className="text-2xl font-bold text-teal-400 mb-2"
+                        animate={inView ? {
+                          textShadow: [
+                            "0 0 0px rgba(45, 212, 191, 0)",
+                            "0 0 8px rgba(45, 212, 191, 0.5)",
+                            "0 0 0px rgba(45, 212, 191, 0)"
+                          ],
+                          transition: {
+                            duration: 3,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            delay: index * 0.3
+                          }
+                        } : {}}
+                      >
                         {exp.company}
-                      </h3>
+                      </motion.h3>
                       <p className="text-xl text-white mb-1">
                         {exp.position}
                       </p>
-                      <p className="text-gray-400 mb-4 inline-block px-3 py-1 rounded-full bg-[#1e2a47] text-sm">
+                      <motion.p 
+                        className="text-gray-400 mb-4 inline-block px-3 py-1 rounded-full bg-[#1e2a47] text-sm"
+                        whileHover={{
+                          backgroundColor: "rgba(45, 212, 191, 0.2)",
+                          color: "rgba(255, 255, 255, 0.9)",
+                          scale: 1.05,
+                          transition: { duration: 0.2 }
+                        }}
+                      >
                         {exp.period}
-                      </p>
+                      </motion.p>
                     </div>
 
                     {/* Right side */}
@@ -213,12 +325,29 @@ const Experience = () => {
                             initial="hidden"
                             animate={activeIndex === index || inView ? "visible" : "hidden"}
                             className="flex items-start gap-2 text-gray-300"
+                            whileHover={{
+                              x: 5,
+                              color: "rgba(255, 255, 255, 0.95)",
+                              transition: { duration: 0.2 }
+                            }}
                           >
                             <div className="flex-shrink-0 pt-1">
                               <motion.div 
                                 className="h-2 w-2 rounded-full bg-teal-400"
-                                animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
-                                transition={{ duration: 2, repeat: Infinity }}
+                                animate={inView ? {
+                                  scale: [1, 1.5, 1],
+                                  opacity: [0.7, 1, 0.7],
+                                  boxShadow: [
+                                    "0 0 0px rgba(45, 212, 191, 0)",
+                                    "0 0 5px rgba(45, 212, 191, 0.7)",
+                                    "0 0 0px rgba(45, 212, 191, 0)"
+                                  ],
+                                  transition: {
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    delay: taskIndex * 0.1
+                                  }
+                                } : {}}
                               />
                             </div>
                             <span>{task}</span>
