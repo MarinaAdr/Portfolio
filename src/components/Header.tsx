@@ -103,7 +103,7 @@ const Header = () => {
               <img 
                 src={Home}
                 alt="developper illustration" 
-                className="w-[50%] h-[50%] bg-none "
+                className="w-[100%] h-[100%] bg-none "
               />
             </div>
             <div className="absolute inset-0 -z-0">
