@@ -24,7 +24,7 @@ const Header = () => {
 
   // Text for animated title
   const creativeText = "CREATIVE";
-  const designerText = "DEVELOPER";
+  const designerText = "DEVELOPER & TESTER";
 
   // Function to handle CV download
   const handleDownloadCV = () => {
