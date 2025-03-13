@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ReactTyped } from 'react-typed';
 import { ChevronDown } from 'lucide-react';
-import Home from "../assets/home.png"
+import Home from "../assets/home.png";
+import CV from "../assets/pdf/cv.pdf"; // Import the CV file
 
 const Header = () => {
   // Animation variants for the title letters
@@ -24,6 +25,21 @@ const Header = () => {
   // Text for animated title
   const creativeText = "CREATIVE";
   const designerText = "DEVELOPER";
+
+  // Function to handle CV download
+  const handleDownloadCV = () => {
+    // Create an anchor element and set properties
+    const link = document.createElement('a');
+    link.href = CV;
+    link.download = 'cv.pdf'; // Name for the downloaded file
+    document.body.appendChild(link);
+    
+    // Trigger download
+    link.click();
+    
+    // Clean up
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="bg-slate-900 min-h-screen relative">
@@ -90,7 +106,7 @@ const Header = () => {
                 backSpeed={50}
                 loop
                 cursorChar="|"
-                className="text-gray-300"
+                className="text-teal-300"
               />
             </div>
             
@@ -101,15 +117,15 @@ const Header = () => {
               >
                 Hire me
               </a>
-              <a
-                href="#projects"
-                className="px-8 py-3 bg-slate-800 text-white flex items-center gap-2 rounded-full transition-all duration-300"
+              <button
+                onClick={handleDownloadCV}
+                className="px-8 py-3 bg-slate-800 text-white flex items-center gap-2 rounded-full transition-all duration-300 hover:bg-slate-700"
               >
                 Download CV
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
           
