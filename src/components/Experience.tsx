@@ -240,8 +240,6 @@ const Experience = () => {
                   initial="initial"
                   animate={inView ? "float" : "initial"}
                   whileHover="hover"
-                  variants={cardHoverVariants}
-                  // Ajouter un effet de rotation subtil
                   animate={inView ? {
                     rotateX: [0, 1, 0, -1, 0],
                     rotateY: [0, -1, 0, 1, 0],
