@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ReactTyped } from 'react-typed';
 import { ChevronDown } from 'lucide-react';
 import Home from "../assets/home.png";
-import CV from "../assets/pdf/cv.pdf"; // Import the CV file
+import Home1 from "../assets/home1.png";
+import Home2 from "../assets/home 2.png";
+import CV from "../assets/pdf/cv.pdf"; 
+
 
 const Header = () => {
+  // State pour suivre l'image actuelle
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Tableau des images
+  const images = [Home, Home1, Home2];
+
+  // Effet pour changer l'image toutes les 5 secondes
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
+    
+    // Nettoyage de l'intervalle lors du démontage du composant
+    return () => clearInterval(intervalId);
+  }, []);
+
   // Animation variants for the title letters
   const titleAnimation = {
     hidden: { opacity: 0 },
@@ -132,10 +151,16 @@ const Header = () => {
           {/* Right content - Illustration */}
           <div className="mt-10 md:mt-0 relative">
             <div className="relative z-10">
-              <img 
-                src={Home}
-                alt="developper illustration" 
-                className="w-[100%] h-[100%] bg-none "
+              {/* Affiche uniquement l'image actuelle avec une transition en fondu */}
+              <motion.img 
+                key={currentImageIndex}
+                src={images[currentImageIndex]}
+                alt="developer illustration" 
+                className="w-full h-full bg-none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
               />
             </div>
             <div className="absolute inset-0 -z-0">
