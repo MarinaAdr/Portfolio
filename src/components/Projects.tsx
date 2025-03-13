@@ -2,23 +2,41 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, ExternalLink } from 'lucide-react';
+import ecommerce from "../assets/ecommerce.jpg";
+import siteweb from "../assets/siteweb.jpg"
 
 const projects = [
   {
     title: "Application de gestion de syndic",
-    description: "Application web complète pour la gestion de copropriétés avec Django et PostgreSQL",
+    description: "Application web complète pour la gestion de copropriétés avec Express et MySQL",
     image: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800",
-    tech: ["Django", "PostgreSQL", "React", "Docker"],
-    github: "https://github.com/username/syndic-app",
-    live: "https://syndic-app.demo"
+    tech: ["Express", "MySQL", "React"],
+    github: "https://github.com/MarinaAdr/server_GS",
+    // live: "https://syndic-app.demo"
   },
   {
     title: "Application de gestion des congés",
     description: "Solution MERN Stack pour la gestion des congés des employés",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
-    tech: ["MongoDB", "Express", "React", "Node.js"],
-    github: "https://github.com/username/leave-management",
-    live: "https://leave-app.demo"
+    tech: ["MySQL", "Express", "React", "Node.js"],
+    github: "https://github.com/MarinaAdr/gestion-des-conges",
+    // live: "https://leave-app.demo"
+  },
+  {
+    title: "Site e-commerce",
+    description: "Solution MERN Stack pour un site e-commerce",
+    image: ecommerce,
+    tech: ["MySQL", "Express", "React", "Node.js"],
+    github: "https://github.com/MarinaAdr/e-commerce",
+    // live: "https://leave-app.demo"
+  },
+  {
+    title: "Refonte site web Gepixbim",
+    description: "Refonte du site en Reactjs qui etait en wordpress",
+    image: siteweb,
+    tech: ["MySQL", "Express", "React", "Node.js"],
+    github: "https://github.com/MarinaAdr/rtgeo-refonte",
+    // live: "https://leave-app.demo"
   }
 ];
 
@@ -29,8 +47,8 @@ const Projects = () => {
   });
 
   return (
-    <section id="projects" className="py-20" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="projects" className="" ref={ref}>
+      <div className="container mx-auto bg-slate-900 px-4">
         <h2 className="text-4xl font-bold text-center mb-12">
           My Recent <span className="text-primary">Works</span>
         </h2>
@@ -72,7 +90,7 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex justify-end">
                   <a
                     href={project.github}
                     target="_blank"
@@ -82,15 +100,7 @@ const Projects = () => {
                     <Github size={20} />
                     <span>Code</span>
                   </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors duration-300"
-                  >
-                    <ExternalLink size={20} />
-                    <span>Demo</span>
-                  </a>
+                
                 </div>
               </div>
             </motion.div>
