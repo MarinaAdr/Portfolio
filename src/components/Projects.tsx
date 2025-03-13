@@ -43,7 +43,7 @@ const projects: Project[] = [
   },
   {
     title: "Refonte site web Gepixbim",
-    description: "Refonte du site en Reactjs qui etait en wordpress",
+    description: "Refonte du site Gepixbim en Reactjs qui etait en wordpress",
     image: siteweb,
     tech: ["MySQL", "Express", "React", "Node.js"],
     github: "https://github.com/MarinaAdr/rtgeo-refonte",
