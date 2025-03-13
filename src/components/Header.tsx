@@ -106,7 +106,7 @@ const Header = () => {
                 backSpeed={50}
                 loop
                 cursorChar="|"
-                className="text-teal-300"
+                className="text-gray-300"
               />
             </div>
             
