@@ -78,8 +78,8 @@ const Header = () => {
                   </motion.span>
                 ))}
               </div>
-              <div className="flex flex-wrap">
-                {designerText.split("").map((char, index) => (
+              <div className="flex flex-wrap space-y-9">
+                {designerText.split("  ").map((char, index) => (
                   <motion.span
                     key={index}
                     custom={index + creativeText.length}
