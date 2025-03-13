@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ReactLogo from "../assets/react.png";
@@ -25,105 +25,235 @@ const skills = [
 ];
 
 const Skills = () => {
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+  
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1
   });
 
-  const [skillsRef, skillsInView] = useInView({
+  const [titleRef, titleInView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1
+  });
+
+  const [descRef, descInView] = useInView({
     triggerOnce: false,
     threshold: 0.1
   });
 
   // Animation variants
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.7, 
+        ease: "easeOut" 
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.7, 
+        delay: 0.2,
+        ease: "easeOut" 
+      }
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.3
       }
     }
   };
 
-  const itemVariants = {
+  const gridItemVariants = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
     visible: { 
       opacity: 1, 
       scale: 1, 
       y: 0,
       transition: { 
-        duration: 0.5,
-        ease: "easeOut"
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+        mass: 0.8
       }
     }
   };
 
+  // Decorative elements
+  const decorativeElements = [
+    { x: "5%", y: "10%", size: 6, delay: 0.1 },
+    { x: "92%", y: "25%", size: 8, delay: 0.2 },
+    { x: "15%", y: "85%", size: 10, delay: 0.3 },
+    { x: "80%", y: "80%", size: 5, delay: 0.4 },
+    { x: "40%", y: "5%", size: 7, delay: 0.5 },
+    { x: "60%", y: "95%", size: 9, delay: 0.6 },
+  ];
+
+  // Restructure skills array into rows of 3
+  const skillRows = [];
+  for (let i = 0; i < skills.length; i += 3) {
+    skillRows.push(skills.slice(i, i + 3));
+  }
+
   return (
-    <section id="skills" className="py-20 bg-slate-900 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <div className="flex flex-col items-center">
+    <section id="skills" className="py-20 bg-[#0a1122] relative overflow-hidden">
+      {/* Decorative elements */}
+      {decorativeElements.map((element, index) => (
+        <motion.div
+          key={index}
+          className="absolute rounded-full bg-teal-500/10"
+          style={{
+            left: element.x,
+            top: element.y,
+            width: `${element.size}px`,
+            height: `${element.size}px`,
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={inView ? { 
+            opacity: 0.6, 
+            scale: 1,
+            transition: { 
+              delay: element.delay,
+              duration: 0.8,
+              ease: "easeOut"
+            }
+          } : { opacity: 0, scale: 0 }}
+        />
+      ))}
+
+      {/* Decorative gradient backdrop */}
+      <div className="absolute inset-0 bg-gradient-radial from-teal-500/5 via-transparent to-transparent opacity-30" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col items-center justify-center" ref={ref}>
+          {/* Title */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8 }}
-            className="mb-10 text-center"
+            ref={titleRef}
+            variants={titleVariants}
+            initial="hidden"
+            animate={titleInView ? "visible" : "hidden"}
+            className="text-center mb-8"
           >
-            <h2 className="text-5xl font-bold text-white mb-4">My <span className="text-teal-400">Skills</span></h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Voici les technologies avec lesquelles je travaille régulièrement pour créer des applications web performantes et modernes.
+            <h2 className="text-5xl font-bold text-white">
+              My <span className="text-teal-400">Skills</span>
+            </h2>
+          </motion.div>
+
+          {/* Description */}
+          <motion.div
+            ref={descRef}
+            variants={descriptionVariants}
+            initial="hidden"
+            animate={descInView ? "visible" : "hidden"}
+            className="max-w-2xl text-center mb-12"
+          >
+            <p className="text-gray-300 leading-relaxed">
+              Voici les technologies avec lesquelles je travaille régulièrement pour créer des applications 
+              web performantes et modernes.
             </p>
           </motion.div>
 
+          {/* Skills grid - organized in rows of 3 */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="w-full max-w-3xl"
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            className="w-full max-w-5xl mx-auto space-y-6"
           >
-            <div className="rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 p-8 relative z-10">
-              <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                {/* Background decorative icons */}
-                <div className="grid grid-cols-5 gap-6 w-full h-full">
-                  {Array(20).fill(0).map((_, i) => (
-                    <div key={i} className="flex items-center justify-center">
-                      {i % 4 === 0 && <span className="text-teal-500">💻</span>}
-                      {i % 4 === 1 && <span className="text-teal-500">📱</span>}
-                      {i % 4 === 2 && <span className="text-teal-500">⌨️</span>}
-                      {i % 4 === 3 && <span className="text-teal-500">✉️</span>}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <motion.div
-                ref={skillsRef}
-                variants={containerVariants}
-                initial="hidden"
-                animate={skillsInView ? "visible" : "hidden"}
-                className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5"
-              >
-                {skills.map((skill) => (
+            {skillRows.map((row, rowIndex) => (
+              <div key={rowIndex} className="flex flex-col sm:flex-row justify-center gap-6">
+                {row.map((skill) => (
                   <motion.div
                     key={skill.name}
-                    variants={itemVariants}
-                    className="bg-slate-800 hover:bg-slate-700 rounded-md p-3 text-center shadow-lg border border-slate-700 hover:border-teal-500 transition-all duration-300 flex flex-col items-center"
+                    variants={gridItemVariants}
+                    onHoverStart={() => setHoveredSkill(skill.name)}
+                    onHoverEnd={() => setHoveredSkill(null)}
+                    whileHover={{ 
+                      scale: 1.05,
+                      transition: { duration: 0.2 } 
+                    }}
+                    className="bg-[#111a2e] rounded-lg p-6 flex flex-col items-center justify-center shadow-lg border border-[#1e2a47] hover:border-teal-400 transition-all duration-300 relative w-full sm:w-1/3"
                   >
-                    <div className="h-16 w-16 mb-2 flex items-center justify-center">
-                      <img 
-                        src={skill.logo} 
-                        alt={`${skill.name} logo`} 
-                        className="object-contain h-full w-full" 
-                      />
+                    {/* Skill highlight glow effect */}
+                    <motion.div 
+                      className="absolute inset-0 bg-teal-500/5 rounded-lg z-0"
+                      animate={{ 
+                        opacity: hoveredSkill === skill.name ? 1 : 0,
+                        scale: hoveredSkill === skill.name ? 1.05 : 1
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    
+                    <div className="relative z-10 flex flex-col items-center">
+                      {/* Logo container - enlarged */}
+                      <motion.div 
+                        className="h-24 w-24 mb-4 flex items-center justify-center"
+                        animate={{
+                          y: hoveredSkill === skill.name ? -5 : 0,
+                          transition: { duration: 0.3 }
+                        }}
+                      >
+                        <img 
+                          src={skill.logo} 
+                          alt={`${skill.name} logo`} 
+                          className="object-contain h-full w-full" 
+                        />
+                      </motion.div>
+                      
+                      {/* Skill name - enlarged */}
+                      <motion.p 
+                        className="text-center font-medium text-lg text-white"
+                        animate={{
+                          color: hoveredSkill === skill.name ? '#2dd4bf' : '#ffffff',
+                          transition: { duration: 0.3 }
+                        }}
+                      >
+                        {skill.name}
+                      </motion.p>
                     </div>
-                    <p className="text-white font-medium text-sm">
-                      {skill.name}
-                    </p>
                   </motion.div>
                 ))}
-              </motion.div>
-            </div>
+              </div>
+            ))}
           </motion.div>
+        </div>
+      </div>
+
+      {/* Animated dotted background */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-10 z-0">
+        <div className="grid grid-cols-10 gap-6 w-full h-full">
+          {Array(100).fill(0).map((_, i) => (
+            <motion.div 
+              key={i} 
+              className="w-1 h-1 rounded-full bg-teal-500"
+              initial={{ opacity: 0.1, scale: 0 }}
+              animate={{ 
+                opacity: Math.random() * 0.5 + 0.2, 
+                scale: Math.random() * 0.6 + 0.4,
+                transition: { 
+                  delay: Math.random() * 2,
+                  duration: Math.random() * 2 + 1,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                } 
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>
