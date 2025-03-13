@@ -22,7 +22,7 @@ function App() {
         style={{ scaleX }}
       />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto ">
         <Header />
         <About />
         <Experience />
