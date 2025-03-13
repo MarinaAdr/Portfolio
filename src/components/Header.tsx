@@ -22,8 +22,8 @@ const Header = () => {
   };
 
   // Text for animated title
-  const creativeText = "FULLSTACK";
-  const designerText = "DEVELOPPER";
+  const creativeText = "CREATIVE";
+  const designerText = "DEVELOPER";
 
   return (
     <div className="bg-slate-900 min-h-screen relative">
@@ -77,6 +77,22 @@ const Header = () => {
                 ))}
               </div>
             </h1>
+            
+            {/* Added typed text with changing content */}
+            <div className="text-lg md:text-xl text-gray-300 mb-6">
+              <ReactTyped
+                strings={[
+                  "Développeuse fullstack JS",
+                  "Passionnée par le web",
+                  "React enthousiaste"
+                ]}
+                typeSpeed={70}
+                backSpeed={50}
+                loop
+                cursorChar="|"
+                className="text-gray-300"
+              />
+            </div>
             
             <div className="flex gap-4 mt-8">
               <a
