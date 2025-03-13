@@ -207,16 +207,7 @@ const Projects = () => {
             variants={titleVariants}
             className="text-center mb-16"
           >
-            <motion.div
-              className="inline-block relative mb-3"
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              <div className="px-3 py-1 text-sm font-semibold text-teal-400 bg-teal-400/10 rounded-full">
-                Portfolio
-              </div>
-            </motion.div>
+          
 
             <motion.h2
               className="text-5xl font-bold mb-4 inline-block relative"
