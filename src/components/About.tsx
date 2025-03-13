@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const skills = [
-  "React", "TypeScript", "Node.js", 
-  "PostgreSQL", "Git", "PHP",
-  "TailwindCSS", "MongoDB", "Express",
-];
-
 const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   
@@ -17,11 +11,6 @@ const About = () => {
   });
 
   const [nameRef, nameInView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1
-  });
-
-  const [skillsRef, skillsInView] = useInView({
     triggerOnce: false,
     threshold: 0.1
   });
@@ -90,29 +79,6 @@ const About = () => {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
   const iconVariants = {
     hidden: { opacity: 0, scale: 0 },
     visible: index => ({ 
@@ -137,7 +103,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 bg-slate-900 relative overflow-hidden">
-      {/* Decorative background elements inspired by the image */}
+      {/* Decorative background elements */}
       <div className="absolute inset-0 z-0 opacity-20">
         {backgroundIcons.map((item, index) => (
           <motion.div
@@ -158,7 +124,7 @@ const About = () => {
         ))}
       </div>
 
-      {/* Decorative curved line like in the image */}
+      {/* Decorative curved line */}
       <motion.div 
         className="absolute bottom-10 left-20 text-teal-500 opacity-30"
         initial={{ opacity: 0, pathLength: 0 }}
@@ -176,7 +142,7 @@ const About = () => {
       </motion.div>
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <div className="flex flex-col md:flex-row gap-10 md:gap-20 items-center">
+        <div className="flex flex-col md:flex-row justify-center gap-10 md:gap-20 items-center">
           {/* Left side with title and text */}
           <div className="w-full md:w-1/2">
             <div className="space-y-6">
@@ -251,57 +217,6 @@ const About = () => {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </motion.svg>
                 </button>
-              </motion.div>
-            </div>
-          </div>
-          
-          {/* Right side with illustration and skills */}
-          <div className="w-full md:w-1/2">
-            <div className="relative">
-              {/* Illustration can be added here to match the sleeping developer from the image */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="mb-10"
-              >
-                <div className="rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 p-8 relative z-10">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                    {/* Background decorative icons like in the image */}
-                    <div className="grid grid-cols-5 gap-6 w-full h-full">
-                      {Array(20).fill(0).map((_, i) => (
-                        <div key={i} className="flex items-center justify-center">
-                          {i % 4 === 0 && <span className="text-teal-500">💻</span>}
-                          {i % 4 === 1 && <span className="text-teal-500">📱</span>}
-                          {i % 4 === 2 && <span className="text-teal-500">⌨️</span>}
-                          {i % 4 === 3 && <span className="text-teal-500">✉️</span>}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <h3 className="text-xl font-semibold text-teal-400 mb-4">My Skills</h3>
-                  
-                  <motion.div
-                    ref={skillsRef}
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={skillsInView ? "visible" : "hidden"}
-                    className="grid grid-cols-3 gap-3"
-                  >
-                    {skills.map((skill) => (
-                      <motion.div
-                        key={skill}
-                        variants={itemVariants}
-                        className="bg-slate-800 hover:bg-slate-700 rounded-md p-3 text-center shadow-lg border border-slate-700 hover:border-teal-500 transition-all duration-300"
-                      >
-                        <p className="text-white font-medium">
-                          {skill}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
               </motion.div>
             </div>
           </div>
