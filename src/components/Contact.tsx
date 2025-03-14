@@ -1,8 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Download } from 'lucide-react';
+import { Github, Mail, Download } from 'lucide-react';
+import CV from "../assets/pdf/cv.pdf"; 
 
 const Contact = () => {
+   // Function to handle CV download
+   const handleDownloadCV = () => {
+    // Create an anchor element and set properties
+    const link = document.createElement('a');
+    link.href = CV;
+    link.download = 'cv.pdf'; // Name for the downloaded file
+    document.body.appendChild(link);
+    
+    // Trigger download
+    link.click();
+    
+    // Clean up
+    document.body.removeChild(link);
+  };
   return (
     <section id="contact" className="py-20 bg-slate-900  ">
       <div className="container mx-auto px-4">
@@ -34,28 +49,15 @@ const Contact = () => {
               <Mail size={20} />
               <span>Email</span>
             </a>
-            <a
-              onClick={(e) => {
-                e.preventDefault();
-                fetch('../assets/pdf/cv.pdf')
-                  .then(response => response.blob())
-                  .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'cv_marina_adr.pdf';
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                    window.URL.revokeObjectURL(url);
-                  });
-              }}
-              href="#"
-              className="flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full transition-all duration-300"
-            >
-              <Download size={20} />
-              <span>Télécharger CV</span>
-            </a>
+            <button
+                onClick={handleDownloadCV}
+                className="px-8 py-3 bg-slate-800 text-white flex items-center gap-2 rounded-full transition-all duration-300 hover:bg-slate-700"
+              >
+                Download CV
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                </svg>
+              </button>
           </motion.div>
 
           <motion.p
