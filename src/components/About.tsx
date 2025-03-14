@@ -79,26 +79,22 @@ const About = () => {
     }
   };
 
-  const iconVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: index => ({ 
-      opacity: 0.2, 
-      scale: 1,
-      transition: { 
-        delay: index * 0.05,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  };
-
-  // Icons for background decoration
+  // Expanded list of icons for background decoration
   const backgroundIcons = [
-    { icon: "💻", x: "10%", y: "10%", rotate: -15, delay: 0 },
-    { icon: "⚡", x: "85%", y: "20%", rotate: 10, delay: 0.2 },
-    { icon: "🔍", x: "20%", y: "80%", rotate: 5, delay: 0.4 },
-    { icon: "⚙️", x: "75%", y: "75%", rotate: -10, delay: 0.6 },
-    { icon: "📱", x: "45%", y: "25%", rotate: 15, delay: 0.8 },
+    { icon: "💻", x: "10%", y: "10%", rotate: -15, delay: 0, floatY: [0, -15], floatX: [0, 10] },
+    { icon: "⚡", x: "85%", y: "20%", rotate: 10, delay: 0.2, floatY: [0, 20], floatX: [0, -15] },
+    { icon: "🔍", x: "20%", y: "80%", rotate: 5, delay: 0.4, floatY: [0, -20], floatX: [0, 15] },
+    { icon: "⚙️", x: "75%", y: "75%", rotate: -10, delay: 0.6, floatY: [0, 15], floatX: [0, -10] },
+    { icon: "📱", x: "45%", y: "25%", rotate: 15, delay: 0.8, floatY: [0, -15], floatX: [0, 8] },
+    // Additional icons
+    { icon: "🚀", x: "65%", y: "15%", rotate: 20, delay: 1.0, floatY: [0, 25], floatX: [0, -12] },
+    { icon: "🔧", x: "15%", y: "45%", rotate: -5, delay: 1.2, floatY: [0, -18], floatX: [0, 14] },
+    { icon: "📊", x: "80%", y: "50%", rotate: 8, delay: 1.4, floatY: [0, 12], floatX: [0, -15] },
+    { icon: "🔮", x: "30%", y: "15%", rotate: -12, delay: 1.6, floatY: [0, -22], floatX: [0, 10] },
+    { icon: "🌐", x: "55%", y: "85%", rotate: 18, delay: 1.8, floatY: [0, 15], floatX: [0, -8] },
+    { icon: "📈", x: "5%", y: "60%", rotate: -20, delay: 2.0, floatY: [0, -10], floatX: [0, 12] },
+    { icon: "🔗", x: "90%", y: "85%", rotate: 5, delay: 2.2, floatY: [0, 18], floatX: [0, -10] },
+    { icon: "🧩", x: "40%", y: "70%", rotate: -15, delay: 2.4, floatY: [0, -15], floatX: [0, 15] },
   ];
 
   return (
@@ -109,9 +105,44 @@ const About = () => {
           <motion.div
             key={index}
             custom={index}
-            variants={iconVariants}
             initial="hidden"
-            animate={inView ? "visible" : "hidden"}
+            animate={inView ? {
+              opacity: 0.2,
+              scale: 1,
+              y: item.floatY,
+              x: item.floatX,
+              rotate: [item.rotate, item.rotate + (index % 2 === 0 ? 10 : -10)]
+            } : { opacity: 0, scale: 0 }}
+            transition={{
+              opacity: { 
+                delay: index * 0.05,
+                duration: 0.5,
+                ease: "easeOut"
+              },
+              scale: { 
+                delay: index * 0.05,
+                duration: 0.5,
+                ease: "easeOut"
+              },
+              y: {
+                repeat: Infinity,
+                duration: 3 + (index % 2),
+                ease: "easeInOut",
+                repeatType: "reverse"
+              },
+              x: {
+                repeat: Infinity,
+                duration: 4 + (index % 3),
+                ease: "easeInOut",
+                repeatType: "reverse"
+              },
+              rotate: {
+                repeat: Infinity,
+                duration: 5 + (index % 2),
+                ease: "easeInOut",
+                repeatType: "reverse"
+              }
+            }}
             className="absolute text-3xl"
             style={{ 
               left: item.x, 
