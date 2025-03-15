@@ -137,7 +137,7 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="py-20 bg-[#0a1122] relative overflow-hidden">
+    <section id="education" className="py-12 md:py-20 bg-[#0a1122] relative overflow-hidden">
       {/* Decorative gradient backdrop avec effet parallaxe */}
       <motion.div 
         className="absolute inset-0 bg-gradient-radial from-teal-500/5 via-transparent to-transparent opacity-30"
@@ -180,15 +180,15 @@ const Education = () => {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6 relative z-10" ref={ref}>
         <motion.div
           variants={titleVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
           <motion.h2 
-            className="text-5xl font-bold text-white"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
             whileInView={{ 
               textShadow: [
                 "0 0 0px rgba(45, 212, 191, 0)",
@@ -208,7 +208,7 @@ const Education = () => {
           
           {/* Sous-titre avec animation */}
           <motion.p
-            className="text-gray-400 mt-4 max-w-2xl mx-auto"
+            className="text-gray-400 mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base"
             variants={fadeInUpVariants}
             custom={1}
             initial="hidden"
@@ -224,9 +224,9 @@ const Education = () => {
           animate={inView ? "visible" : "hidden"}
           className="relative max-w-4xl mx-auto"
         >
-          {/* Timeline line avec animation améliorée */}
+          {/* Timeline line - adjust position for mobile */}
           <motion.div
-            className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-teal-500/70 via-teal-500/30 to-transparent"
+            className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-teal-500/70 via-teal-500/30 to-transparent"
             initial={{ scaleY: 0, opacity: 0 }}
             animate={inView ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
@@ -237,11 +237,13 @@ const Education = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className={`relative mb-16 ${index % 2 === 0 ? 'pr-[55%]' : 'pl-[55%]'}`}
+              className={`relative mb-8 sm:mb-16 pl-12 sm:pl-0 ${
+                index % 2 === 0 ? 'sm:pr-[55%]' : 'sm:pl-[55%]'
+              }`}
             >
-              {/* Timeline dot avec animation améliorée */}
+              {/* Timeline dot - adjust position for mobile */}
               <motion.div 
-                className="absolute left-1/2 -ml-3 h-6 w-6 rounded-full bg-teal-400 shadow-lg shadow-teal-400/50 border-2 border-white z-10"
+                className="absolute left-0 sm:left-1/2 -ml-3 h-6 w-6 rounded-full bg-teal-400 shadow-lg shadow-teal-400/50 border-2 border-white z-10"
                 initial={{ scale: 0 }}
                 animate={inView ? { 
                   scale: 1,
@@ -253,10 +255,10 @@ const Education = () => {
                 }}
               />
               
-              {/* Petite ligne qui connecte le point à la carte */}
+              {/* Connector line - adjust for mobile */}
               <motion.div 
                 className={`absolute top-3 h-0.5 bg-teal-400/60 z-5 ${
-                  index % 2 === 0 ? 'right-[45%] w-[5%]' : 'left-[45%] w-[5%]'
+                  index % 2 === 0 ? 'left-12 sm:right-[45%] w-[20px] sm:w-[5%]' : 'left-12 sm:left-[45%] w-[20px] sm:w-[5%]'
                 }`}
                 initial={{ scaleX: 0 }}
                 animate={inView ? { 
@@ -270,7 +272,7 @@ const Education = () => {
 
               <motion.div
                 variants={contentVariants(index)}
-                className="p-8 bg-[#111a2e] rounded-xl border border-[#1e2a47] relative overflow-hidden group"
+                className="p-6 sm:p-8 bg-[#111a2e] rounded-xl border border-[#1e2a47] relative overflow-hidden group"
                 whileHover={{
                   y: -5,
                   transition: { duration: 0.2 }
@@ -293,9 +295,9 @@ const Education = () => {
                   }}
                 />
 
-                <h3 className="text-2xl font-bold text-teal-400 mb-2 relative z-10">{edu.title}</h3>
-                <div className="flex justify-between items-center mb-4 relative z-10">
-                  <p className="text-xl text-white">{edu.institution}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-teal-400 mb-2 relative z-10">{edu.title}</h3>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 relative z-10">
+                  <p className="text-lg sm:text-xl text-white mb-2 sm:mb-0">{edu.institution}</p>
                   <motion.p 
                     className="text-gray-400 inline-block px-3 py-1 rounded-full bg-[#1e2a47] text-sm"
                     whileHover={{
@@ -308,7 +310,7 @@ const Education = () => {
                     {edu.period}
                   </motion.p>
                 </div>
-                <p className="text-gray-300 text-lg relative z-10">{edu.description}</p>
+                <p className="text-gray-300 text-base sm:text-lg relative z-10">{edu.description}</p>
                 
                 {/* Icône decorative qui apparaît au hover */}
                 <motion.div
