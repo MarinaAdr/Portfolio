@@ -27,7 +27,7 @@ const projects: Project[] = [
   },
   {
     title: "Application de gestion des congés",
-    description: "Solution MERN Stack pour la gestion des congés des employés",
+    description: "Application web pour la gestion des congés des employés",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
     tech: ["MySQL", "Express", "React", "Node.js"],
     github: "https://github.com/MarinaAdr/gestion-des-conges",
