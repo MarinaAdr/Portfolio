@@ -18,9 +18,9 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Application de gestion de syndic",
-    description: "Application web complète pour la gestion de copropriétés avec Express et MySQL",
+    description: "Application web de gestion de Syndic et des copropriétés (En cours)",
     image: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800",
-    tech: ["Express", "MySQL", "React"],
+    tech: ["Express", "MySQL", "React", "Node.js"],
     github: "https://github.com/MarinaAdr/server_GS",
     featured: true
     // live: "https://syndic-app.demo"
